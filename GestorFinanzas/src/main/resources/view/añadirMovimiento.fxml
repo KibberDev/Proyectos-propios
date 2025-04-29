@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.AñadirMovimientoController"
+      spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+    <Label text="Añadir Movimiento" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <ComboBox fx:id="tipoComboBox" promptText="Tipo (Ingreso/Gasto)">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Ingreso"/>
+                <String fx:value="Gasto"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <TextField fx:id="cantidadField" promptText="Cantidad (€)"/>
+    <DatePicker fx:id="fechaPicker"/>
+    <TextField fx:id="categoriaField" promptText="Categoría"/>
+    <TextArea fx:id="descripcionArea" promptText="Descripción (opcional)" prefRowCount="3"/>
+
+    <HBox spacing="10">
+        <Button text="Guardar" onAction="#guardarMovimiento" />
+        <Button text="Cancelar" onAction="#cancelar" />
+    </HBox>
+</VBox>

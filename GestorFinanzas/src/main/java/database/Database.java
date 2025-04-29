@@ -8,7 +8,7 @@ import org.sqlite.JDBC;
 
 public class Database {
 
-    private static final String URL = "jdbc:sqlite:GestorFinanzas.db";
+    private static final String URL = "jdbc:sqlite:src/main/resources/db/GestorFinanzas.db";
 
     public static Connection connect(){
         Connection conn = null;
@@ -16,6 +16,7 @@ public class Database {
         try{
             conn = DriverManager.getConnection(URL);
             System.out.println("✅ Conexión exitosa a la base de datos.");
+            System.out.println("Ruta absoluta de la DB: " + new java.io.File(URL.replace("jdbc:sqlite:", "")).getAbsolutePath());
             crearTablaSiNoExiste(conn);
         } catch (SQLException e){
             System.out.println("❌ Error al conectar a la base de datos: " + e.getMessage());
