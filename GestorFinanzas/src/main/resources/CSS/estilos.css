@@ -1,45 +1,99 @@
-/* Fondo general */
+/* === FONDO GENERAL === */
 .root {
-    -fx-background-color: #f4f4f4;
+    -fx-background-color: linear-gradient(to bottom, #f0f2f5, #e3e7ec);
+    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
-/* Estilo tabla */
-.table-view {
-    -fx-border-color: #ccc;
-    -fx-table-cell-border-color: transparent;
-    -fx-font-size: 14px;
+/* === RÓTULO PRINCIPAL === */
+.label-titulo {
+    -fx-font-size: 26px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #1e3a5f;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0.1, 1, 1);
 }
 
-/* Hover en filas */
-.table-row-cell:hover {
-    -fx-background-color: #cce5ff; /* azul clarito */
-}
-
-/* Estilo de botón */
-.button {
-    -fx-background-color: #007bff;   /* Azul moderno */
-    -fx-text-fill: white;            /* Texto blanco */
+/* === SALDO ACTUAL === */
+#labelSaldo {
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-cursor: hand;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px 16px;
-
-    /* SOMBRA */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0, 2, 2);
+    -fx-text-fill: #2e7d32;
 }
 
-/* Botón de hover */
+/* === BOTONES MODERNOS === */
+.button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
+}
+
 .button:hover {
-    -fx-background-color: #0056b3;
+    -fx-background-color: #1565c0;
 }
 
+/* === BOTÓN ICONO (papelera, exportar...) === */
 .icon-button {
-    -fx-background-color: #e53935;
+    -fx-background-color: #f44336;
+    -fx-background-radius: 50%;
+    -fx-padding: 10px;
     -fx-cursor: hand;
-    -fx-background-radius: 6px;
-    -fx-padding: 6px;
 }
 
 .icon-button:hover {
-    -fx-background-color: #b71c1c;
+    -fx-background-color: #c62828;
+}
+
+/* === TABLA === */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10;
+    -fx-font-size: 13px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.2, 0, 2);
+}
+
+.table-view .column-header {
+    -fx-background-color: #f3f4f6;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER;
+    -fx-border-color: transparent transparent #ccc transparent;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #bbdefb;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #e3f2fd;
+}
+
+/* === CAMPOS DE TEXTO === */
+.text-field, .text-area, .date-picker {
+    -fx-background-radius: 8px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 8px;
+    -fx-font-size: 13px;
+    -fx-padding: 6px;
+}
+
+/* === COMBOBOX === */
+.combo-box {
+    -fx-background-radius: 8px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 8px;
+    -fx-font-size: 13px;
+    -fx-padding: 6px;
 }

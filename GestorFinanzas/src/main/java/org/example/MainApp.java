@@ -13,7 +13,7 @@ public class MainApp extends Application {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainView.fxml"));
             Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(getClass().getResource("/css/estilos.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/CSS/estilos.css").toExternalForm());
             primaryStage.setTitle("Gestor de Finanzas Personales");
             primaryStage.setScene(scene);
             primaryStage.show();

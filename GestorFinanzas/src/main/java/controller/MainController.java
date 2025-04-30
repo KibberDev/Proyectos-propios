@@ -65,6 +65,11 @@ public class MainController {
 
         buttonEliminar.setGraphic(iconoPapelera);
 
+        FontIcon iconoExportar = new FontIcon("fas-file-csv");
+        iconoExportar.setIconSize(18);
+        iconoExportar.setIconColor(Color.WHITE);
+        botonExportar.setGraphic(iconoExportar);
+
     }
 
 
@@ -204,6 +209,66 @@ public class MainController {
 
     @FXML
     private ComboBox<String> comboCategoria;
+
+    @FXML
+    private void abrirGraficoGastos(){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/graficoGastos.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = new Stage();
+            stage.setTitle("Gastos por categoría");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private Button botonExportar;
+
+    @FXML
+    private void exportarCSV() {
+        String userHome = System.getProperty("user.home");
+        String rutaArchivo = userHome + "/Desktop/movimientos.csv";
+
+        try (Connection conn = Database.connect();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM movimientos");
+             ResultSet rs = stmt.executeQuery();
+             java.io.FileWriter writer = new java.io.FileWriter(rutaArchivo)) {
+
+            // Cabecera
+            writer.write("Tipo;Cantidad;Fecha;Categoria;Descripcion\n");
+
+            // Filas
+            while (rs.next()) {
+                String linea = String.format("%s;%.2f;%s;%s;%s\n",
+                        rs.getString("tipo"),
+                        rs.getDouble("cantidad"),
+                        rs.getString("fecha"),
+                        rs.getString("categoria"),
+                        rs.getString("descripcion").replace(";", " "));
+                writer.write(linea);
+            }
+
+            mostrarAlerta("✅ Archivo CSV exportado en el Escritorio.");
+
+        } catch (Exception e) {
+            mostrarAlerta("❌ Error al exportar CSV: " + e.getMessage());
+        }
+    }
+
+    private void mostrarAlerta(String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Exportar a CSV");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+
+
 }
 
 

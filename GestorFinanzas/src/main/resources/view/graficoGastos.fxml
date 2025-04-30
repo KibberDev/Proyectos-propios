@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.GraficoGastosController"
+      alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+    <PieChart fx:id="graficoGastos" prefWidth="500" prefHeight="400" />
+</VBox>
