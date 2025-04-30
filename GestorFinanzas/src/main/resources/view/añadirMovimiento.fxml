@@ -22,7 +22,7 @@
 
     <TextField fx:id="cantidadField" promptText="Cantidad (€)"/>
     <DatePicker fx:id="fechaPicker"/>
-    <TextField fx:id="categoriaField" promptText="Categoría"/>
+    <ComboBox fx:id="comboCategoria" promptText="Selecciona una categoría" />
     <TextArea fx:id="descripcionArea" promptText="Descripción (opcional)" prefRowCount="3"/>
 
     <HBox spacing="10">

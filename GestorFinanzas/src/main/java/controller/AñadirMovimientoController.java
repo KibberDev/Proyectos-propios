@@ -21,9 +21,6 @@ public class AñadirMovimientoController {
     private DatePicker fechaPicker;
 
     @FXML
-    private TextField categoriaField;
-
-    @FXML
     private TextArea descripcionArea;
 
     @FXML
@@ -31,7 +28,7 @@ public class AñadirMovimientoController {
         String tipo = tipoComboBox.getValue();
         String cantidadTexto = cantidadField.getText();
         LocalDate fecha = fechaPicker.getValue();
-        String categoria = categoriaField.getText();
+        String categoria = comboCategoria.getValue();
         String descripcion = descripcionArea.getText();
 
         //Validación formulario completo
@@ -80,5 +77,29 @@ public class AñadirMovimientoController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
+    }
+
+    @FXML
+    private ComboBox<String> comboCategoria;
+
+    @FXML
+    public void initialize() {
+        comboCategoria.getItems().addAll(
+                "Comida",
+                "Transporte",
+                "Ocio",
+                "Salud",
+                "Educación",
+                "Hogar",
+                "Seguros",
+                "Juegos",
+                "Salario",
+                "Paga extra",
+                "Premios",
+                "Apuestas",
+                "Ropa",
+                "Créditos",
+                "Otros"
+        );
     }
 }

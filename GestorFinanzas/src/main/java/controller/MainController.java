@@ -2,7 +2,7 @@ package controller;
 
 import database.Database;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.ComboBox;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -26,6 +26,7 @@ public class MainController {
     @FXML
     public void initialize() {
         double saldo = obtenerSaldoActual();
+
         labelSaldo.setText(String.format("Saldo actual: %.2f€", saldo));
 
         colTipo.setCellValueFactory(
@@ -103,6 +104,7 @@ public class MainController {
 
             double saldo = obtenerSaldoActual();
             labelSaldo.setText(String.format("Saldo actual: %.2f€", saldo));
+            cargarMovimientos();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -199,6 +201,9 @@ public class MainController {
             }
         });
     }
+
+    @FXML
+    private ComboBox<String> comboCategoria;
 }
 
 
