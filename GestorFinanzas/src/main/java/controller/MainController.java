@@ -5,13 +5,14 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Movimiento;
+import org.kordamp.ikonli.javafx.FontIcon;
 
+import javafx.scene.paint.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +40,32 @@ public class MainController {
                 data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getDescripcion()));
 
         cargarMovimientos();
+
+        tablaMovimientos.setRowFactory(tv -> new TableRow<>() {
+            @Override
+            protected void updateItem(Movimiento movimiento, boolean empty) {
+                super.updateItem(movimiento, empty);
+                if (movimiento == null || empty) {
+                    setStyle("");
+                } else {
+                    if (movimiento.getTipo().equalsIgnoreCase("Ingreso")) {
+                        setStyle("-fx-background-color: #d4edda;"); // verde suave
+                    } else if (movimiento.getTipo().equalsIgnoreCase("Gasto")) {
+                        setStyle("-fx-background-color: #f8d7da;"); // rojo suave
+                    } else {
+                        setStyle("");
+                    }
+                }
+            }
+        });
+        FontIcon iconoPapelera = new FontIcon("fas-trash-alt");
+        iconoPapelera.setIconSize(18);
+        iconoPapelera.setIconColor(Color.WHITE);
+
+        buttonEliminar.setGraphic(iconoPapelera);
+
     }
+
 
     private double obtenerSaldoActual() {
         double ingresos = 0;
@@ -125,5 +151,55 @@ public class MainController {
         } catch (Exception e) {
             System.out.println("Error al cargar movimiento: " +e.getMessage());
         }
+
+
+    }
+
+    @FXML
+    private Button buttonEliminar;
+
+    @FXML
+    private void eliminarMovimiento() {
+        Movimiento seleccionado = tablaMovimientos.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Eliminar movimiento");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Selecciona un movimiento para eliminar.");
+            alerta.showAndWait();
+            return;
+        }
+
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar eliminación");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("¿Estás seguro de que quieres eliminar este movimiento?");
+        confirmacion.showAndWait().ifPresent(respuesta -> {
+            if (respuesta == ButtonType.OK) {
+                try (Connection conn = Database.connect();
+                     PreparedStatement stmt = conn.prepareStatement(
+                             "DELETE FROM movimientos WHERE tipo = ? AND cantidad = ? AND fecha = ? AND categoria = ? AND descripcion = ?")) {
+
+                    stmt.setString(1, seleccionado.getTipo());
+                    stmt.setDouble(2, seleccionado.getCantidad());
+                    stmt.setString(3, seleccionado.getFecha());
+                    stmt.setString(4, seleccionado.getCategoria());
+                    stmt.setString(5, seleccionado.getDescripcion());
+
+                    stmt.executeUpdate();
+
+                    // Actualizar tabla y saldo
+                    cargarMovimientos();
+                    labelSaldo.setText(String.format("Saldo actual: %.2f€", obtenerSaldoActual()));
+
+                } catch (Exception e) {
+                    System.out.println("❌ Error al eliminar: " + e.getMessage());
+                }
+            }
+        });
     }
 }
+
+
+

@@ -1,0 +1,45 @@
+/* Fondo general */
+.root {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Estilo tabla */
+.table-view {
+    -fx-border-color: #ccc;
+    -fx-table-cell-border-color: transparent;
+    -fx-font-size: 14px;
+}
+
+/* Hover en filas */
+.table-row-cell:hover {
+    -fx-background-color: #cce5ff; /* azul clarito */
+}
+
+/* Estilo de botón */
+.button {
+    -fx-background-color: #007bff;   /* Azul moderno */
+    -fx-text-fill: white;            /* Texto blanco */
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+
+    /* SOMBRA */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0, 2, 2);
+}
+
+/* Botón de hover */
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.icon-button {
+    -fx-background-color: #e53935;
+    -fx-cursor: hand;
+    -fx-background-radius: 6px;
+    -fx-padding: 6px;
+}
+
+.icon-button:hover {
+    -fx-background-color: #b71c1c;
+}

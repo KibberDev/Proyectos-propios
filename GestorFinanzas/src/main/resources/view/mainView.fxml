@@ -14,11 +14,15 @@
            style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
     <Label fx:id="labelSaldo" text="Saldo actual: 0.00 €"
-           style="-fx-font-size: 18px; -fx-text-fill: green;"/>
+           style="-fx-font-size: 18px; -fx-text-fill: green; -fx-font-weight: bold;"/>
 
-    <Button fx:id="buttonAñadir" text="Añadir Ingreso"
-            onAction="#abrirFormularioMovimiento"
-            style="-fx-font-size: 18px;-fx-text-fill: green;"/>
+    <Button fx:id="buttonAñadir" text="Añadir Ingreso/Gasto"
+            onAction="#abrirFormularioMovimiento"/>
+
+    <Button fx:id="buttonEliminar" onAction="#eliminarMovimiento"
+            styleClass="icon-button"/>
+
+
 
     <TableView fx:id="tablaMovimientos" prefHeight="300" prefWidth="600">
         <columns>
