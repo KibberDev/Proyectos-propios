@@ -25,7 +25,7 @@ public class Database {
     }
 
     private static void crearTablaSiNoExiste(Connection connection){
-        String sql = "CREATE TABLE IF NOT EXISTS movimientos (\n"
+        String sqlMovimientos = "CREATE TABLE IF NOT EXISTS movimientos (\n"
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, \n"
                 + "tipo TEXT NOT NULL, \n"
                 + "cantidad REAL NOT NULL, \n"
@@ -34,11 +34,19 @@ public class Database {
                 + "descripcion TEXT\n"
                 + ");";
 
-        try(Statement stmt = connection.createStatement()) {
-            stmt.execute(sql);
-            System.out.println("✅ Tabla 'movimientos' verificada/creada.");
+        String sqlPresupuestos = "CREATE TABLE IF NOT EXISTS presupuestos (\n"
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, \n"
+                + "mes TEXT NOT NULL, \n"
+                + "categoria TEXT NOT NULL, \n"
+                + "presupuesto REAL NOT NULL\n"
+                + ");";
+
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(sqlMovimientos);
+            stmt.execute(sqlPresupuestos);
+            System.out.println("✅ Tablas 'movimientos' y 'presupuestos' verificadas/creadas.");
         } catch (SQLException e) {
-            System.out.println("❌ Error al crear/verificar la tabla: " + e.getMessage());
+            System.out.println("❌ Error al crear/verificar las tablas: " + e.getMessage());
         }
     }
 }

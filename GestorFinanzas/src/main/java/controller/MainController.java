@@ -100,6 +100,7 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/añadirMovimiento.fxml"));
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/CSS/estilos.css").toExternalForm());
 
             Stage stage = new Stage(); //Creamos ventana nueva
             stage.setTitle("Añadir movimiento");
@@ -146,6 +147,7 @@ public class MainController {
 
             while (rs.next()) {
                 Movimiento mov = new Movimiento(
+                        rs.getInt("id"),
                         rs.getString("tipo"),
                         rs.getDouble("cantidad"),
                         rs.getString("fecha"),
@@ -215,6 +217,7 @@ public class MainController {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/graficoGastos.fxml"));
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/CSS/estilos.css").toExternalForm());
 
             Stage stage = new Stage();
             stage.setTitle("Gastos por categoría");

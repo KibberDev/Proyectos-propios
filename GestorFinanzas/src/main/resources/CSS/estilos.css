@@ -1,45 +1,39 @@
-/* === FONDO GENERAL === */
+/* ----------- FONDO Y TIPOGRAFÍA GENERAL ----------- */
 .root {
-    -fx-background-color: linear-gradient(to bottom, #f0f2f5, #e3e7ec);
-    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
-}
-
-/* === RÓTULO PRINCIPAL === */
-.label-titulo {
-    -fx-font-size: 26px;
-    -fx-font-weight: 600;
-    -fx-text-fill: #1e3a5f;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0.1, 1, 1);
-}
-
-/* === SALDO ACTUAL === */
-#labelSaldo {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #2e7d32;
-}
-
-/* === BOTONES MODERNOS === */
-.button {
-    -fx-background-color: #2196F3;
-    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom, #f0f4f8, #dbe9f4);
+    -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
     -fx-font-size: 14px;
-    -fx-font-weight: 600;
-    -fx-background-radius: 10px;
-    -fx-padding: 10px 20px;
+    -fx-text-fill: #2c3e50;
+}
+
+/* ----------- TÍTULO PRINCIPAL ----------- */
+.label-titulo {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* ----------- BOTONES ----------- */
+.button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0, 2, 2);
+    -fx-transition: all 0.3s ease-in-out;
 }
 
 .button:hover {
-    -fx-background-color: #1565c0;
+    -fx-background-color: #0056b3;
 }
 
-/* === BOTÓN ICONO (papelera, exportar...) === */
+/* Botón icono (como papelera) */
 .icon-button {
-    -fx-background-color: #f44336;
-    -fx-background-radius: 50%;
+    -fx-background-color: #e53935;
     -fx-padding: 10px;
+    -fx-background-radius: 50%;
     -fx-cursor: hand;
 }
 
@@ -47,53 +41,83 @@
     -fx-background-color: #c62828;
 }
 
-/* === TABLA === */
+/* ----------- TABLA ----------- */
 .table-view {
     -fx-background-color: white;
-    -fx-border-color: #ddd;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-padding: 10;
-    -fx-font-size: 13px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.2, 0, 2);
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 4, 4);
+    -fx-table-cell-border-color: transparent;
 }
 
-.table-view .column-header {
-    -fx-background-color: #f3f4f6;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-alignment: CENTER;
-    -fx-border-color: transparent transparent #ccc transparent;
+.table-view .column-header-background {
+    -fx-background-color: #e1e8f0;
+    -fx-border-radius: 10px 10px 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
 }
 
 .table-view .table-row-cell {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-font-size: 13px;
+    -fx-padding: 6px;
 }
 
-.table-view .table-row-cell:filled:selected {
-    -fx-background-color: #bbdefb;
-}
-
-.table-view .table-row-cell:hover {
+.table-row-cell:filled:hover {
     -fx-background-color: #e3f2fd;
 }
 
-/* === CAMPOS DE TEXTO === */
-.text-field, .text-area, .date-picker {
-    -fx-background-radius: 8px;
-    -fx-border-color: #ccc;
-    -fx-border-radius: 8px;
-    -fx-font-size: 13px;
-    -fx-padding: 6px;
+.table-row-cell:filled:selected {
+    -fx-background-color: #cce5ff;
 }
 
-/* === COMBOBOX === */
-.combo-box {
-    -fx-background-radius: 8px;
+/* ----------- TEXTFIELD / TEXTAREA ----------- */
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-color: white;
     -fx-border-color: #ccc;
-    -fx-border-radius: 8px;
-    -fx-font-size: 13px;
-    -fx-padding: 6px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px;
+}
+
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #007bff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 123, 255, 0.2), 6, 0, 0, 2);
+}
+
+/* ----------- MODALES (POPUPS) ----------- */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #f4f4f4;
+}
+
+.dialog-pane .button-bar .button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* ----------- SPACING ----------- */
+.vbox, .hbox {
+    -fx-spacing: 15px;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
 }

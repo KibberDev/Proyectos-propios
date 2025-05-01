@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.PlanificadorPresupuestosController">
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+            <Label text="Planificador de Presupuestos" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+            <!-- Formulario -->
+            <HBox spacing="10">
+                <TextField fx:id="campoMes" promptText="Mes (ej: 2025-05)" />
+                <TextField fx:id="campoCategoria" promptText="Categoría" />
+                <TextField fx:id="campoPresupuesto" promptText="Presupuesto (€)" />
+                <Button text="Añadir" onAction="#guardarPresupuesto" />
+            </HBox>
+
+            <!-- Botón para mostrar gráfico -->
+            <Button text="Mostrar gráfico de comparación" onAction="#mostrarGraficoComparacion" />
+
+            <!-- Contenedor para el gráfico de barras -->
+            <VBox fx:id="contenedorGrafico" />
+
+            <!-- Tabla -->
+            <TableView fx:id="tablaPresupuestos" prefHeight="400">
+                <columns>
+                    <TableColumn fx:id="colMes" text="Mes" prefWidth="100"/>
+                    <TableColumn fx:id="colCategoria" text="Categoría" prefWidth="150"/>
+                    <TableColumn fx:id="colPresupuesto" text="Presupuesto (€)" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

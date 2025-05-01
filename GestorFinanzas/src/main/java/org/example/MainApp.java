@@ -11,7 +11,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main.fxml"));
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add(getClass().getResource("/CSS/estilos.css").toExternalForm());
             primaryStage.setTitle("Gestor de Finanzas Personales");

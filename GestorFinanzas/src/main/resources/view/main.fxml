@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.chart.PieChart?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.DashboardController">
+    <top>
+        <Label fx:id="labelSaldo" text="Saldo actual: 0.00€"
+               style="-fx-font-size: 20px; -fx-padding: 15; -fx-font-weight: bold;"/>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <HBox spacing="20" alignment="CENTER">
+
+                <!-- Card: Gráfico de evolución -->
+                <VBox styleClass="card" spacing="10" prefWidth="600">
+                    <Label text="Evolución del saldo mensual" styleClass="card-title"/>
+                    <LineChart fx:id="lineChartSaldo" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Mes"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Saldo (€)"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+
+                <VBox styleClass="card" spacing="10" prefWidth="500">
+                    <Label text="Últimos 5 movimientos" styleClass="card-title"/>
+                    <TableView fx:id="tablaUltimos" prefHeight="300" prefWidth="500">
+                        <columns>
+                            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="100">
+                                <cellValueFactory><PropertyValueFactory property="fecha"/></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="colCategoria" text="Categoría" prefWidth="120">
+                                <cellValueFactory><PropertyValueFactory property="categoria"/></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="colTipo" text="Tipo" prefWidth="80">
+                                <cellValueFactory><PropertyValueFactory property="tipo"/></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="colCantidad" text="Cantidad" prefWidth="100">
+                                <cellValueFactory><PropertyValueFactory property="cantidad"/></cellValueFactory>
+                            </TableColumn>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox styleClass="card" spacing="10" prefWidth="500">
+                    <Label text="Gastos por categoría" styleClass="card-title"/>
+                    <PieChart fx:id="pieChartGastos" prefHeight="300" prefWidth="500"/>
+                </VBox>
+            </HBox>
+
+            <!-- Botones -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Añadir movimiento" onAction="#abrirFormularioMovimiento"/>
+                <Button text="Ver todos los movimientos" onAction="#abrirTodosLosMovimientos"/>
+                <Button text="Exportar CSV" fx:id="botonExportar" onAction="#exportarCSV"/>
+            </HBox>
+
+            <!--Cards de Compraveta, Calculadora y Conversor de divisas -->
+            <HBox spacing="20" alignment="CENTER">
+
+                <VBox styleClass="card" spacing="10" prefWidth="500">
+                    <Label text="Calculadora de compraventa" styleClass="card-title"/>
+                </VBox>
+                <VBox styleClass="card" spacing="10" prefWidth="500">
+                    <Label text="Planificador de Presupuestos" styleClass="card-title"/>
+                    <Button text="Abrir" onAction="#abrirPlanificadorPresupuestos" />
+                </VBox>
+                <VBox styleClass="card" spacing="10" prefWidth="500">
+                    <Label text="Conversor de Divisas" styleClass="card-title"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
